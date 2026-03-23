@@ -1,5 +1,4 @@
 import type { StorageEngine } from './types';
-import { FileSystemEngine } from './FileSystemEngine';
 import { LocalStorageEngine } from './LocalStorageEngine';
 
 export type { StorageEngine, StorageEngineType } from './types';
@@ -11,8 +10,5 @@ export function supportsFileSystemAccess(): boolean {
 }
 
 export function createStorageEngine(): StorageEngine {
-  if (supportsFileSystemAccess()) {
-    return new FileSystemEngine();
-  }
   return new LocalStorageEngine();
 }

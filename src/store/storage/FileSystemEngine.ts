@@ -132,7 +132,7 @@ export class FileSystemEngine implements StorageEngine {
         const data = JSON.parse(raw);
         const migrated = migrateIfNeeded(data);
         const state = toAppState(migrated);
-        if (state.tasks.length > 0 || state.chatHistory.length > 0) {
+        if (state.tasks.length > 0 || state.chatHistory.length > 0 || state.settings.apiKey) {
           console.warn('[TaskMind] Restored data from localStorage backup');
           this.lastState = state;
           return state;

@@ -22,8 +22,8 @@ export class LocalStorageEngine implements StorageEngine {
         const data = JSON.parse(raw);
         const migrated = migrateIfNeeded(data);
         const state = toAppState(migrated);
-        // Only accept if it has real data (tasks or chat history)
-        if (state.tasks.length > 0 || state.chatHistory.length > 0) {
+        // Only accept if it has real data (tasks, chat history, or non-default settings)
+        if (state.tasks.length > 0 || state.chatHistory.length > 0 || state.settings.apiKey) {
           if (key === BACKUP_KEY) {
             console.warn('[TaskMind] Primary data corrupt/missing, restored from backup');
           }
